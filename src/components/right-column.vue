@@ -32,5 +32,6 @@ export default {
 section {
   border-left: 1px solid #bbb;
   display: flex;
+  overflow-y: auto;
 }
 </style>

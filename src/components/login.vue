@@ -70,38 +70,4 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-input {
-  width: 85%;
-  padding: 5px;
-  margin: 5px;
-  border: 1px solid lightgrey;
-  border-radius: 4px;
-  font-size: 14px;
-}
-button {
-  padding: 0.5rem 0.75rem;
-  background: #ededed;
-  font-weight: bold;
-  font-size: 14px;
-  border: 1px solid lightgrey;
-  margin: 10px;
-  border-radius: 4px;
-}
-button:hover {
-  background: #ddd;
-}
-button.back {
-  align-self: flex-start;
-  font-size: 10px;
-  padding: 0.25rem 0.5rem;
-  font-weight: normal;
-}
-button.submit {
-  float: right;
-  background: deepskyblue;
-  color: white;
-}
-button .icon {
-  margin-right: 5px;
-}
 </style>

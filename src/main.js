@@ -7,10 +7,11 @@ import {
   faChevronDown,
   faChevronLeft,
   faPencilAlt,
-  faPlus
+  faPlus,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faChevronDown, faChevronLeft, faPlus, faPencilAlt)
+library.add(faChevronDown, faChevronLeft, faPlus, faTimes, faPencilAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
