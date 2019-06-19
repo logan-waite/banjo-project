@@ -33,14 +33,11 @@ export default {
           password: userInfo.password,
           confirmPassword: userInfo.confirmPassword
         })
-          .then(users => this.users = users[0])
+          .then(user => this.user = user)
       } else {
         // login action
         UserApi.get('', { email: userInfo.email })
-          .then(users => {
-            console.log({ users })
-            this.user = users[0]
-          })
+          .then(users => this.user = users[0])
       }
     }
   }

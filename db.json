@@ -24,6 +24,27 @@
       "password": "password",
       "confirmPassword": "password",
       "id": 4
+    },
+    {
+      "name": "Lando Calrissian",
+      "email": "password",
+      "password": "password",
+      "confirmPassword": "password",
+      "id": 5
+    },
+    {
+      "name": "FN-2134",
+      "email": "password",
+      "password": "password",
+      "confirmPassword": "password",
+      "id": 6
+    },
+    {
+      "name": "Palpatine",
+      "email": "password",
+      "password": "password",
+      "confirmPassword": "password",
+      "id": 7
     }
   ],
   "homes": [
