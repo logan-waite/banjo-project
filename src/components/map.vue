@@ -6,6 +6,7 @@
 
 <script>
 import GoogleMaps from 'google-maps'
+import api from '../api'
 
 export default {
   data() {
@@ -14,6 +15,7 @@ export default {
     }
   },
   mounted() {
+    console.log({ houses: api.getHousesForSale() })
     GoogleMaps.load(function (google) {
       console.log({ google })
       const map = new google.maps.Map(document.getElementById('map'), {

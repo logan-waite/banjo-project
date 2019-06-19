@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Luke Skywalker",
+      "email": "lskywalker@rebels.com",
+      "password": "password"
+    },
+    {
+      "id": 2,
+      "name": "Leia Organa",
+      "email": "lorgana@rebels.com",
+      "password": "password"
+    }
+  ],
+  "homes": [
+    {
+      "id": 1,
+      "address": "483 7th Avenue, Salt Lake City, UT",
+      "price": "500,000",
+      "description": "Beautiful home in the avenues, great place to get away from rebellion politics",
+      "owner": 2
+    },
+    {
+      "id": 2,
+      "address": "213 9th Avenue, Salt Lake City, UT",
+      "price": "498,000",
+      "description": "Lots of bedrooms, large living space, perfect for fencing with your father",
+      "owner": 1
+    }
+  ]
+}

@@ -36,7 +36,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
   display: grid;
-  grid-template-columns: auto 25%;
+  grid-template-columns: auto 30%;
   grid-template-rows: 50px auto;
 }
 </style>
