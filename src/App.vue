@@ -1,28 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <navbar></navbar>
+    <google-map/>
+    <list/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/navbar'
+import GoogleMap from './components/map'
+import List from './components/list'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Navbar,
+    GoogleMap,
+    List
   }
 }
 </script>
 
 <style>
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto 25%;
+  grid-template-rows: 50px auto;
 }
 </style>
