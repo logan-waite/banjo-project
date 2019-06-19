@@ -1,8 +1,8 @@
 <template>
   <nav>
     <span>Yonder Homes</span>
-    <span v-if="user" @click.stop="showMenu = !showMenu">
-      {{user.name}}
+    <span v-if="name" @click.stop="showMenu = !showMenu">
+      {{name}}
       <font-awesome-icon icon="chevron-down"/>
       <div class="menu" v-if="showMenu">
         <ul>
@@ -14,22 +14,23 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  props: {
-    user: {
-      type: Object,
-      default: null
-    }
-  },
   data() {
     return {
       showMenu: false
     }
   },
+  computed: {
+    ...mapState({
+      name: state => state.user && state.user.name
+    })
+  },
   methods: {
     logout() {
       this.showMenu = false;
-      this.$emit('logout')
+      this.$store.dispatch('logout')
     }
   }
 }

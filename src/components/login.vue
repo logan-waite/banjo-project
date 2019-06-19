@@ -46,15 +46,17 @@ export default {
   },
   methods: {
     login() {
-      this.$emit('login', { email: this.email, password: this.password })
+      this.$store.dispatch('login', { email: this.email, password: this.password })
+      this.$emit('hide')
     },
     create() {
-      this.$emit('create', {
+      this.$store.dispatch('createUser', {
         name: this.name,
         email: this.email,
         password: this.password,
         confirmPassword: this.confirmPassword
       })
+      this.$emit('hide')
     }
   }
 }

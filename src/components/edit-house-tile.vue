@@ -14,6 +14,7 @@
         <textarea id="description" v-model="description"/>
       </div>
       <button class="submit">{{submitText}}</button>
+      <button class="danger" v-if="home !== null" @click="$emit('remove', home.id)">Delete</button>
     </form>
   </div>
 </template>

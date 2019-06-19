@@ -58,14 +58,6 @@
       "description": "A beautiful home in the heart of Orem",
       "owner": 4,
       "id": 4
-    },
-    {
-      "owner": 2,
-      "create": true,
-      "address": "100 S 324 Orem UT",
-      "price": "453,000",
-      "description": "some house in orem, i know not where",
-      "id": 5
     }
   ]
 }

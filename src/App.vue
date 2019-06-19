@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <navbar :user="user" @logout="logout"></navbar>
+    <navbar></navbar>
     <google-map/>
-    <right-column @login="login" :user="user"/>
+    <right-column :user="user"/>
   </div>
 </template>
 
@@ -24,25 +24,8 @@ export default {
       user: null
     }
   },
-  methods: {
-    login(userInfo) {
-      if (userInfo.create) {
-        UsersApi.post('', {
-          name: userInfo.name,
-          email: userInfo.email,
-          password: userInfo.password,
-          confirmPassword: userInfo.confirmPassword
-        })
-          .then(user => this.user = user)
-      } else {
-        // login action
-        UsersApi.get('', { email: userInfo.email })
-          .then(users => this.user = users[0])
-      }
-    },
-    logout() {
-      this.user = null
-    }
+  mounted() {
+    this.$store.dispatch('getHomes')
   }
 }
 </script>
@@ -96,6 +79,11 @@ button.submit {
   float: right;
   background: deepskyblue;
   color: white;
+}
+button.danger {
+  color: white;
+  background: red;
+  float: right;
 }
 button .icon {
   margin-right: 5px;

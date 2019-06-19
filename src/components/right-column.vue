@@ -1,15 +1,12 @@
 <template>
   <section>
-    <login
-      v-if="!user"
-      @login="$emit('login', {create: false, ...$event})"
-      @create="$emit('login', {create: true, ...$event})"
-    ></login>
-    <list v-else @login="$emit('login', $event)" :user-id="user.id"/>
+    <login v-if="!user"></login>
+    <list v-else/>
   </section>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Login from './login'
 import List from './list'
 
@@ -18,12 +15,11 @@ export default {
     Login,
     List
   },
-  props: {
-    user: {
-      type: Object,
-      default: null
-    }
-  },
+  computed: {
+    ...mapState({
+      user: state => state.user
+    })
+  }
 }
 </script>
 
