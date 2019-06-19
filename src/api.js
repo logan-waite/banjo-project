@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const BASE_URL =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:3000/api/' : ''
+  process.env.NODE_ENV === 'development' ? 'http://localhost:3000/' : ''
 
 function isFunction (functionToCheck) {
   return (
@@ -44,7 +44,7 @@ function createCalls (base) {
 }
 
 export const UserApi = (() => {
-  return createCalls(BASE_URL + 'user')
+  return createCalls(BASE_URL + 'users')
 })()
 
 export const HomeApi = (() => {

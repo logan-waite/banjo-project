@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <navbar></navbar>
+    <navbar :user="user"></navbar>
     <google-map/>
-    <list/>
+    <list @login="login" :user="user"/>
   </div>
 </template>
 
@@ -10,6 +10,7 @@
 import Navbar from './components/navbar'
 import GoogleMap from './components/map'
 import List from './components/list'
+import { UserApi } from './api';
 
 export default {
   name: 'app',
@@ -17,6 +18,31 @@ export default {
     Navbar,
     GoogleMap,
     List
+  },
+  data() {
+    return {
+      user: null
+    }
+  },
+  methods: {
+    login(userInfo) {
+      if (userInfo.create) {
+        UserApi.post('', {
+          name: userInfo.name,
+          email: userInfo.password,
+          password: userInfo.password,
+          confirmPassword: userInfo.confirmPassword
+        })
+          .then(users => this.users = users[0])
+      } else {
+        // login action
+        UserApi.get('', { email: userInfo.email })
+          .then(users => {
+            console.log({ users })
+            this.user = users[0]
+          })
+      }
+    }
   }
 }
 </script>

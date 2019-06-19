@@ -15,7 +15,6 @@ export default {
     }
   },
   mounted() {
-    console.log({ houses: api.getHousesForSale() })
     GoogleMaps.load(function (google) {
       console.log({ google })
       const map = new google.maps.Map(document.getElementById('map'), {

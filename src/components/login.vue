@@ -9,16 +9,21 @@
     </div>
     <div v-else-if="loggingIn" class="login">
       <button @click="loggingIn = false" class="back">Back</button>
-      <input type="email" v-model="email" placeholder="Email">
-      <input type="password" v-model="password" placeholder="Password">
-      <button @click="login()" class="submit">Login</button>
+      <form @submit.prevent="login()">
+        <input type="email" v-model="email" placeholder="Email" required>
+        <input type="password" v-model="password" placeholder="Password" required>
+        <button type="submit" class="submit">Login</button>
+      </form>
     </div>
     <div v-else-if="creating" class="create">
       <button @click="creating = false" class="back">Back</button>
-      <input type="email" v-model="email" placeholder="Email">
-      <input type="password" v-model="password" placeholder="Password">
-      <input type="password" v-model="confirmPassword" placeholder="Confirm Password">
-      <button @click="create()" class="submit">Login</button>
+      <form @submit.prevent="create()">
+        <input type="text" v-model="name" placeholder="Name" required>
+        <input type="email" v-model="email" placeholder="Email" required>
+        <input type="password" v-model="password" placeholder="Password" required>
+        <input type="password" v-model="confirmPassword" placeholder="Confirm Password" required>
+        <button type="submit" class="submit">Create Account</button>
+      </form>
     </div>
   </div>
 </template>
@@ -29,6 +34,7 @@ export default {
     return {
       creating: false,
       loggingIn: false,
+      name: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -36,10 +42,15 @@ export default {
   },
   methods: {
     login() {
-
+      this.$emit('login', { email: this.email, password: this.password })
     },
     create() {
-
+      this.$emit('create', {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        confirmPassword: this.confirmPassword
+      })
     }
   }
 }
@@ -82,7 +93,7 @@ button.back {
   font-weight: normal;
 }
 button.submit {
-  align-self: flex-end;
+  float: right;
   background: deepskyblue;
   color: white;
 }

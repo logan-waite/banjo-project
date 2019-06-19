@@ -11,6 +11,19 @@
       "name": "Leia Organa",
       "email": "lorgana@rebels.com",
       "password": "password"
+    },
+    {
+      "name": "Darth Vader",
+      "email": "dvader@empire.com",
+      "password": "password",
+      "id": 3
+    },
+    {
+      "name": "Han Solo",
+      "email": "hsolo@smugglers.co",
+      "password": "password",
+      "confirmPassword": "password",
+      "id": 4
     }
   ],
   "homes": [
