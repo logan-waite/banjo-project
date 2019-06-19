@@ -1,44 +1,52 @@
 <template>
-  <section>
-    <login
-      v-if="!user"
-      @login="$emit('login', {create: false, ...$event})"
-      @create="$emit('login', {create: true, ...$event})"
-    ></login>
-  </section>
+  <div id="list">
+    <div class="top">
+      <h3>My Homes</h3>
+      <font-awesome-icon icon="plus"/>
+    </div>
+    <house-tile v-for="(home, index) in homes" :key="index" :house="home"/>
+  </div>
 </template>
 
 <script>
-import Login from './login'
+import HouseTile from './house-tile'
+import { HomesApi } from '../api'
 
 export default {
   components: {
-    Login
+    HouseTile
   },
   props: {
-    user: {
-      type: Object,
+    userId: {
+      type: Number,
       default: null
     }
   },
-  methods: {
-    login({ email, password }) {
-      console.log({ email, password })
-      // perform login action
-      this.$emit('login', { create: false, email, password })
-
-    },
-    create(info) {
-      this.$emit('login', { create: true, ...info })
+  data() {
+    return {
+      homes: []
     }
+  },
+  mounted() {
+    HomesApi.get('', { owner: this.userId })
+      .then(homes => {
+        this.homes = homes
+      })
   }
 }
 </script>
 
 
 <style scoped>
-section {
-  border-left: 1px solid #bbb;
+#list {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 15px;
 }
 </style>

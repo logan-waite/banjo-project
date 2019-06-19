@@ -22,7 +22,8 @@ async function callApi (apiCall, params) {
 function createCalls (base) {
   return {
     get (additionalUrl, params) {
-      const url = base + (additionalUrl || '') + '/'
+      const url = base + (additionalUrl || '') + (params ? '' : '/')
+
       return callApi(axios.get, [url, { params }])
     },
     post (additionalUrl, body) {
@@ -43,10 +44,10 @@ function createCalls (base) {
   }
 }
 
-export const UserApi = (() => {
+export const UsersApi = (() => {
   return createCalls(BASE_URL + 'users')
 })()
 
-export const HomeApi = (() => {
+export const HomesApi = (() => {
   return createCalls(BASE_URL + 'homes')
 })()

@@ -1,23 +1,23 @@
 <template>
   <div id="app">
-    <navbar :user="user"></navbar>
+    <navbar :user="user" @logout="logout"></navbar>
     <google-map/>
-    <list @login="login" :user="user"/>
+    <right-column @login="login" :user="user"/>
   </div>
 </template>
 
 <script>
 import Navbar from './components/navbar'
 import GoogleMap from './components/map'
-import List from './components/list'
-import { UserApi } from './api';
+import RightColumn from './components/right-column'
+import { UsersApi } from './api';
 
 export default {
   name: 'app',
   components: {
     Navbar,
     GoogleMap,
-    List
+    RightColumn
   },
   data() {
     return {
@@ -27,18 +27,21 @@ export default {
   methods: {
     login(userInfo) {
       if (userInfo.create) {
-        UserApi.post('', {
+        UsersApi.post('', {
           name: userInfo.name,
-          email: userInfo.password,
+          email: userInfo.email,
           password: userInfo.password,
           confirmPassword: userInfo.confirmPassword
         })
           .then(user => this.user = user)
       } else {
         // login action
-        UserApi.get('', { email: userInfo.email })
+        UsersApi.get('', { email: userInfo.email })
           .then(users => this.user = users[0])
       }
+    },
+    logout() {
+      this.user = null
     }
   }
 }

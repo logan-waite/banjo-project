@@ -8,7 +8,9 @@
       </div>
     </div>
     <div v-else-if="loggingIn" class="login">
-      <button @click="loggingIn = false" class="back">Back</button>
+      <button @click="loggingIn = false" class="back">
+        <font-awesome-icon icon="chevron-left" class="icon"/>Back
+      </button>
       <form @submit.prevent="login()">
         <input type="email" v-model="email" placeholder="Email" required>
         <input type="password" v-model="password" placeholder="Password" required>
@@ -16,7 +18,9 @@
       </form>
     </div>
     <div v-else-if="creating" class="create">
-      <button @click="creating = false" class="back">Back</button>
+      <button @click="creating = false" class="back">
+        <font-awesome-icon icon="chevron-left" class="icon"/>Back
+      </button>
       <form @submit.prevent="create()">
         <input type="text" v-model="name" placeholder="Name" required>
         <input type="email" v-model="email" placeholder="Email" required>
@@ -96,5 +100,8 @@ button.submit {
   float: right;
   background: deepskyblue;
   color: white;
+}
+button .icon {
+  margin-right: 5px;
 }
 </style>
