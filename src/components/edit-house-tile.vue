@@ -13,8 +13,9 @@
         <label for="description">Description</label>
         <textarea id="description" v-model="description"/>
       </div>
-      <button class="submit">{{submitText}}</button>
-      <button class="danger" v-if="home !== null" @click="$emit('remove', home.id)">Delete</button>
+      <button class="submit" v-if="!editing">Add</button>
+      <button class="submit" v-else>Submit</button>
+      <button type="button" class="danger" v-if="editing" @click="remove">Delete</button>
     </form>
   </div>
 </template>
@@ -35,28 +36,24 @@ export default {
     }
   },
   computed: {
-    submitText() {
-      return this.home ? 'Submit' : 'Add'
+    editing() {
+      return this.home !== null
     }
   },
   methods: {
     submit() {
-      const submission =
-      {
-        create: this.home ? false : true,
+      this.$store.dispatch('editHome', {
+        ...this.home,
         address: this.address,
         price: this.price,
         description: this.description
-      }
-      if (this.home) {
-        submission.id = this.home.id
-        submission.owner = this.home.owner
-      }
-      this.$emit('submit', submission)
-
-      this.address = ''
-      this.price = ''
-      this.description = ''
+      }).then(() => {
+        this.$emit('hide')
+      })
+    },
+    remove() {
+      this.$store.dispatch('deleteHome', this.home.id)
+      this.$emit('hide')
     }
   },
   mounted() {

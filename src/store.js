@@ -35,11 +35,26 @@ export default new Vuex.Store({
         confirmPassword: userInfo.confirmPassword
       }).then(user => commit('setUser', user))
     },
-    addHome ({ commit }, home) {
-      return HomesApi.post('', { owner: this.userId, ...home })
+    editHome ({ commit, state, dispatch }, changedHome) {
+      if (state.homes.filter(home => home.id === changedHome.id)) {
+        return HomesApi.patch(`/${changedHome.id}`, changedHome).then(() => {
+          dispatch('getHomes')
+        })
+      } else {
+        return HomesApi.post('', { ...changedHome, owner: state.user.id }).then(
+          home => {
+            commit('setHomes', state.homes.concat(home))
+          }
+        )
+      }
     },
     getHomes ({ commit }) {
       HomesApi.get().then(homes => commit('setHomes', homes))
+    },
+    deleteHome ({ commit, state }, id) {
+      HomesApi.delete(`/${id}`).then(() => {
+        commit('setHomes', state.homes.filter(home => home.id !== id))
+      })
     }
   },
   getters: {

@@ -5,21 +5,15 @@
       <font-awesome-icon v-if="!showEditHome" icon="plus" @click="showEditHome = true"/>
       <font-awesome-icon v-else icon="times" @click="showEditHome = false; homeToEdit = null"/>
     </div>
-    <edit-house-tile
-      v-if="showEditHome"
-      @submit="submitHome"
-      :home="homeToEdit"
-      @remove="removeHome"
-    />
+    <edit-house-tile v-if="showEditHome" :home="homeToEdit" @hide="showEditHome = false"/>
     <house-tile v-for="(home, index) in homes" :key="index" :home="home" @edit="editHome"/>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import HouseTile from './house-tile'
 import EditHouseTile from './edit-house-tile'
-import { HomesApi } from '../api'
 
 export default {
   components: {
@@ -37,6 +31,15 @@ export default {
       homes: 'userHomes'
     })
   },
+  methods: {
+    editHome(home) {
+      this.homeToEdit = home;
+      this.showEditHome = true
+    }
+  },
+  mounted() {
+
+  }
 }
 </script>
 

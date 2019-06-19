@@ -35,22 +35,11 @@
   ],
   "homes": [
     {
-      "id": 1
-    },
-    {
       "id": 2,
       "address": "213 9th Avenue, Salt Lake City, UT",
-      "price": "498,000",
+      "price": "200,000",
       "description": "Lots of bedrooms, large living space, perfect for fencing with your father",
       "owner": 1
-    },
-    {
-      "owner": 2,
-      "create": false,
-      "address": "486 W 165 S Orem, UT",
-      "price": "500,000",
-      "description": "heart in the middle of orem",
-      "id": 3
     },
     {
       "address": "486 W 165 S Orem, UT",
