@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express'
 import * as debug from 'debug';
 import User from '../models/User'
 import * as bcrypt from 'bcrypt'
+import database from '../database'
 const users: User[] = require('../db.json').users
 
 export class AuthRouter {
