@@ -22,22 +22,7 @@
       "name": "Han Solo",
       "email": "hsolo@smugglers.co",
       "password": "password",
-      "confirmPassword": "password",
       "id": 4
-    },
-    {
-      "name": "FN-2134",
-      "email": "fn.2134@empire.com",
-      "password": "password",
-      "confirmPassword": "password",
-      "id": 5
-    },
-    {
-      "name": "Lando Calrissian",
-      "email": "lcalrissian@smugglers.co",
-      "password": "password",
-      "confirmPassword": "password",
-      "id": 6
     }
   ],
   "homes": [

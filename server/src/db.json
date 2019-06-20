@@ -1,0 +1,51 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Luke Skywalker",
+      "email": "lskywalker@rebels.com",
+      "password": "password"
+    },
+    {
+      "id": 2,
+      "name": "Leia Organa",
+      "email": "lorgana@rebels.com",
+      "password": "password"
+    },
+    {
+      "name": "Darth Vader",
+      "email": "dvader@empire.com",
+      "password": "password",
+      "id": 3
+    },
+    {
+      "name": "Han Solo",
+      "email": "hsolo@smugglers.co",
+      "password": "password",
+      "id": 4
+    }
+  ],
+  "homes": [
+    {
+      "id": 2,
+      "address": "213 9th Avenue, Salt Lake City, UT",
+      "price": "200,000",
+      "description": "Lots of bedrooms, large living space, perfect for fencing with your father",
+      "owner": 1
+    },
+    {
+      "address": "486 W 165 S Orem, UT",
+      "price": "400,000",
+      "description": "A beautiful home in the heart of Orem",
+      "owner": 4,
+      "id": 4
+    },
+    {
+      "address": "100 S 200 W Orem UT",
+      "price": "234,000",
+      "description": "lkjasdflkhaskbhdhljasdf",
+      "owner": 4,
+      "id": 5
+    }
+  ]
+}
