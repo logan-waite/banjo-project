@@ -1,6 +1,14 @@
 <template>
   <section>
-    <div id="map"></div>
+    <GmapMap id="map" ref="mapRef" :center="{lat:40, lng:-112.5}" :zoom="7" map-type-id="terrain">
+      <GmapMarker
+        :key="index"
+        v-for="(m, index) in markers"
+        :position="m.position"
+        :clickable="true"
+        @click="center=m.position"
+      />
+    </GmapMap>
   </section>
 </template>
 
@@ -9,47 +17,18 @@ import GoogleMaps from 'google-maps'
 import api from '../api'
 
 export default {
-  data() {
-    return {
-      map: null
+  computed: {
+    markers() {
+      return this.$store.state.markers
     }
   },
   mounted() {
-    GoogleMaps.load(function (google) {
-      console.log({ google })
-      const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: { lat: 40.777, lng: -111.888 }
+    this.$nextTick(() => {
+      console.log(this.$refs)
+      this.$refs.mapRef.$mapPromise.then((map) => {
+        this.$store.dispatch('generateMapMarkers', map)
       })
     })
-    infoWindow = new google.maps.InfoWindow;
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
-        infoWindow.open(map);
-        map.setCenter(pos);
-      }, function () {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
-
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-      infoWindow.setPosition(pos);
-      infoWindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.');
-      infoWindow.open(map);
-    }
   }
 }
 </script>

@@ -31,6 +31,13 @@
       "password": "password",
       "confirmPassword": "password",
       "id": 5
+    },
+    {
+      "name": "Lando Calrissian",
+      "email": "lcalrissian@smugglers.co",
+      "password": "password",
+      "confirmPassword": "password",
+      "id": 6
     }
   ],
   "homes": [
@@ -43,10 +50,17 @@
     },
     {
       "address": "486 W 165 S Orem, UT",
-      "price": "339,000",
+      "price": "400,000",
       "description": "A beautiful home in the heart of Orem",
       "owner": 4,
       "id": 4
+    },
+    {
+      "address": "100 S 200 W Orem UT",
+      "price": "234,000",
+      "description": "lkjasdflkhaskbhdhljasdf",
+      "owner": 4,
+      "id": 5
     }
   ]
 }

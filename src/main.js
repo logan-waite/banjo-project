@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as VueGoogleMaps from 'vue2-google-maps'
 import App from './app.vue'
 import store from './store'
-import GoogleMaps from 'google-maps'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
@@ -16,7 +16,12 @@ import {
 library.add(faChevronDown, faChevronLeft, faPlus, faTimes, faPencilAlt)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-GoogleMaps.KEY = 'AIzaSyADXGvfKPRnvYULA81DxvEHyrgiBbDBP3k'
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyADXGvfKPRnvYULA81DxvEHyrgiBbDBP3k',
+    libraries: 'places'
+  }
+})
 
 Vue.config.productionTip = false
 

@@ -26,6 +26,9 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getHomes')
+      .then(() => {
+        // this.$store.dispatch('generateMapMarkers')
+      })
   }
 }
 </script>

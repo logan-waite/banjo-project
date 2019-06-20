@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { UsersApi, HomesApi } from './api'
+import { gmapApi } from 'vue2-google-maps'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     user: null,
-    homes: []
+    homes: [],
+    mapMarkers: []
   },
   mutations: {
     setHomes (state, homes) {
@@ -15,6 +17,9 @@ export default new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user
+    },
+    setMapMarkers (state, markers) {
+      state.mapMarkers = markers
     }
   },
   actions: {
@@ -36,11 +41,14 @@ export default new Vuex.Store({
       }).then(user => commit('setUser', user))
     },
     editHome ({ commit, state, dispatch }, changedHome) {
-      if (state.homes.filter(home => home.id === changedHome.id)) {
+      console.log({ changedHome })
+      if (state.homes.filter(home => home.id === changedHome.id).length > 0) {
+        console.log('patching')
         return HomesApi.patch(`/${changedHome.id}`, changedHome).then(() => {
           dispatch('getHomes')
         })
       } else {
+        console.log('posting')
         return HomesApi.post('', { ...changedHome, owner: state.user.id }).then(
           home => {
             commit('setHomes', state.homes.concat(home))
@@ -54,6 +62,28 @@ export default new Vuex.Store({
     deleteHome ({ commit, state }, id) {
       HomesApi.delete(`/${id}`).then(() => {
         commit('setHomes', state.homes.filter(home => home.id !== id))
+      })
+    },
+    generateMapMarkers ({ commit, state }, map) {
+      const google = gmapApi()
+      const geocoder = new google.maps.Geocoder()
+      let positions
+      state.homes.map(home => {
+        return geocoder.geocode(
+          {
+            address: home.address
+          },
+          result => {
+            return result.map(place => place.geometry.location)
+          }
+        )
+      })
+      console.log(positions)
+      const markers = positions.map(position => {
+        return new google.maps.Marker({
+          position,
+          map
+        })
       })
     }
   },
