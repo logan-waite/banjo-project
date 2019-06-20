@@ -25,7 +25,7 @@ export default new Vuex.Store({
   actions: {
     login ({ commit }, userInfo) {
       // login action
-      UsersApi.get('', { email: userInfo.email }).then(users => {
+      UsersApi.get('', { email: userInfo.email, password: userInfo.passoword }).then(users => {
         commit('setUser', users[0])
       })
     },

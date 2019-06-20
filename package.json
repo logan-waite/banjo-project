@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev": "concurrently --kill-others \" json-server ./db.json\" \"vue-cli-service serve\" "
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
@@ -13,7 +14,6 @@
     "@fortawesome/vue-fontawesome": "^0.1.6",
     "core-js": "^2.6.5",
     "google-maps": "^3.3.0",
-    "tsoa": "^2.4.2",
     "vue": "^2.6.10",
     "vue2-google-maps": "^0.10.6",
     "vuex": "^3.1.1"
@@ -31,7 +31,8 @@
     "eslint-plugin-vue": "^5.0.0",
     "mocha": "3.1.2",
     "ts-node": "3.3.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "concurrently": "^4.1.0"
   },
   "eslintConfig": {
     "root": true,
